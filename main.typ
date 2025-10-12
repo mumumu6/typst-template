@@ -6,6 +6,7 @@
   lines-per-page: auto,
   numbering-headings: "1.1.1",
   cols: 1,
+  all-display-style: true,
 )
 
 
@@ -33,6 +34,7 @@
 = 表紙について
 表紙は二種類作りました。typeから選べます。\
 レポートを書くときにtitleとsubtitleがどうしても欲しいので二つ用意してあります。
+
 ```typ
 #maketitle(
   title: "Typst template",
@@ -111,8 +113,17 @@ header を付けたいときは
 
 ちなみにコードブロックの上のソースコードという表示は `indexed: false` で消せます。
 
+= 数式
+$
+  sum_(k=0)^(oo) (2k)!/(2^(2k)(k!)^2) 1/(2k+1) = pi/2\
+  (integral_0^oo (sin x) / sqrt(x))^2 = pi/2\
+  (b +- sqrt(b^2 - 4a c) )/ (2a)
+$
 
-\
+文中の数式でも私はディスプレイスタイルの分数がいいので$1/2$,$(integral_0^oo x dif x)/(2x)$$sum_(k=0)^oo$のように表示することができるように`all-display-style`オプションを追加.
+これは場合によっては行間が広がるので分数は`dfrac` で個別に対応することも可能にしました
+
+
 
 #pagebreak()
 以下参考文献の例

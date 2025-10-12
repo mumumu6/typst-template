@@ -110,4 +110,10 @@
   }
 ]
 
-// 参考文献
+// 数式
+
+#let dfrac(num, den) = {
+  // このブロック内だけ、分数を display 風に
+  show math.frac: math.display
+  $ frac(num, den) $
+}
