@@ -47,7 +47,7 @@
 ```
 
 = コードの挿入について
-codelstを使っていて、それをラップしています
+codlyを使っています。
 コードを挿入するには基本はmdと同様に #raw("```")  で囲めばできます。
 ```cpp
 #include <iostream>
@@ -58,21 +58,36 @@ int main() {
     return 0;
 }
 ```
-captionをいじりたいときは
-````typ
-#code(caption:"captionをいじれます",id:"captionの説明")[
-```cpp
-#include <iostream>
-using namespace std;
+header を付けたいときは
+#grid(columns: 2, gutter: 2em)[
+  #codly(header: [*実際のtypstコード*])
 
-int main() {
-    cout << "Hello, World!" << endl;
-    return 0;
-}
-```]
+  ````typ
+  #codly(header: [*Header Example*])
+  ```cpp
+  #include <iostream>
+  using namespace std;
+  int main() {
+      cout << "Hello, World!" << endl;
+      return 0;
+  }
+  ```
+  ````
+][
+  #codly(header: [*Header Example*])
+  ```cpp
+  #include <iostream>
+  using namespace std;
+  int main() {
+      cout << "Hello, World!" << endl;
+      return 0;
+  }
+  ```]
 
-````
-#code(caption: "captionをいじれます", id: "captionの説明")[
+#pagebreak()
+`#code`でも同様に呼び出すことが可能で、こちらからheaderやcaption,labelの指定を可能にしました。
+
+#code(caption: "Hello World", header: [*caption、labelの例*], label: "label")[
   ```cpp
   #include <iostream>
   using namespace std;
@@ -83,21 +98,22 @@ int main() {
   }
   ```
 ]
+@label のようにできます\
+ファイルからの読み込みも可能です
+#grid(columns: 2, gutter: 2em)[
+  ```typ
+  #code(file: "/a.cpp")[]
+  ```
+][
+  #code(file: "/a.cpp")[]
 
-@captionの説明 のように、ラベルで参照することもできます。
-
-
-== ファイルからの参照について
-````typ
-#code(file: read("a.cpp"), lang: "cpp")[]
-````
-
-#code(file: read("a.cpp"), lang: "cpp")[]
+]
 
 ちなみにコードブロックの上のソースコードという表示は `indexed: false` で消せます。
 
 
-
 \
+
+#pagebreak()
 以下参考文献の例
 #bibliography("ref.yml", full: true)

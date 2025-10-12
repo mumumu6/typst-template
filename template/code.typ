@@ -1,29 +1,58 @@
-#import "@preview/codelst:2.0.2" as cdl
+#import "@preview/codly:1.3.0": *
+#import "@preview/codly-languages:0.1.8": *
 
-// ソースコードの設定(codelst)
-#let my_frame = cdl.code-frame.with(
-  fill: luma(95%), // 背景色
-  stroke: .6pt + luma(190), // 枠線の色
-  inset: (x: .45em, y: .65em),
-  radius: 5pt,
-  clip: false,
-)
 
-// `` の設定がcodeblockに反映されないようにlangを付けておく
-#let codelst-lno(lno) = text(.8em, luma(160), raw(lno, lang: "codelst-lno"))
+#let apply-codly(body) = {
+  // ここで「実行」する
+  show: codly-init.with()
+  // numberで上に少し余白を作ったのでコードが上昇する分をここで補正
+  show raw.where(block: true): it => {
+    let last-line = it.lines.len()
+    show raw.line.where(number: 1): ln => move(dy: 0.25em, ln)
+    show raw.line.where(number: last-line): ln => pad(bottom: 0.9em, ln)
 
-#let sourcecode = cdl.sourcecode.with(
-  frame: b => my_frame(b),
-  numbers-style: b => codelst-lno(b),
-)
+    codly(
+      zebra-fill: none,
+      stroke: .5pt + luma(88%),
+      fill: luma(95%),
+      inset: (x: .5em, y: .25em),
+      radius: 1em,
+      languages: codly-languages,
+      // langの装飾
+      lang-fill: luma(85%),
+      lang-stroke: 0.2pt + luma(50%),
+      lang-outset: (x: -0.2em, y: 0em),
+      lang-format: (lang, icon, color) => text(size: 0.85em)[ #lang],
+      header-cell-args: (align: center, fill: luma(88%), inset: (y: 0.7em)),
+      header-transform: it => {
+        set text(size: 1.2em, fill: luma(10%))
+        it
+      },
+      // numbering
+      number-format: b => {
+        pad(
+          // 文字のサイズと開始時と終了時の余白を追加
+          top: if b == 1 { 0.5em } else { 0em },
+          bottom: if b == last-line { 1em } else { 0em },
+          text(size: 0.85em, fill: luma(65%))[#b],
+        )
+      },
 
-#let sourcefile = cdl.sourcefile.with(frame: b => my_frame(b), numbers-style: b => codelst-lno(b))
+      number-align: center,
+    )
+    it
+  }
 
-#show: cdl.codelst.with(frame: b => my_frame(b), numbers-style: b => codelst-lno(b))
+  body
+}
 
-// caption を付けれるように
-#let code(code, caption: "", id: "", position: top, indexed: true, file: none, lang: none) = {
-  // caption の設定
+// 引数をlabelで使いたかったので退避
+#let lbl(it) = { label(it) }
+// 空白を-に変換
+#let slug(s) = str.replace(str(s), regex("\\s+|　+"), "-")
+
+
+#let code(code, label: none, header: none, caption: none, position: bottom, indexed: true, file: none, ..args) = {
   let cap = none
   let numbering = "1" // numbering
 
@@ -31,34 +60,37 @@
     // indexを振りたくなければふらない
     cap = none
     numbering = none
-  } else if caption != "" {
+  } else if caption != none {
     // caption があれば普通にcaptionを付ける
     cap = figure.caption(position: position)[#caption]
-  } else if caption == "" {
-    // caption が空文字列ならseparatorなし
+  } else if caption == none {
+    // caption がない場合separatorなし
     cap = figure.caption(position: position, separator: "")[#caption]
   }
 
-
-  // label がなければcaptionにしておく
-  if id == "" and type(caption) == str {
-    id = caption
+  // label が無ければ caption を流用（文字列のとき）
+  if label == none and type(caption) == str {
+    label = slug(caption)
   }
 
-  let body
+  if file != none {
+    code = raw(read(file), block: true, lang: "cpp")
+  }
 
-  if file == none {
-    // 直接与えられたコードをレンダリング
-    body = sourcecode()[#code]
+  // codly 呼び出し（header 指定があれば渡す）
+  let codly-call
+  if header == none {
+    codly-call = codly(..args)
   } else {
-    body = sourcefile(file, lang: lang)
+    codly-call = codly(header: header, ..args)
   }
 
-
+  // --- figure で包む（参照・番号付け可能） ---
   [
     #figure(caption: cap, kind: "code", supplement: "ソースコード", numbering: numbering)[
-      #body
+      #codly-call
+      #code
     ]
-    #if id != "" { label(id) }
+    #if label != none { lbl(label) }
   ]
 }

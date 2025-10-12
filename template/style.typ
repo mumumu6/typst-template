@@ -94,10 +94,9 @@
     #it.body
   ]
 
-  show strong: set text(
-    font: ((name: sansfont, covers: non-cjk), sansfont-cjk),
-    weight: 450,
-  )
+  // show strong: set text(
+  //   font: ((name: sansfont, covers: non-cjk), sansfont-cjk),
+  // )
   show emph: set text(
     font: ((name: seriffont, covers: non-cjk), sansfont-cjk),
     weight: 450,
@@ -125,37 +124,25 @@
   show link: set text(fill: rgb("#0000ff")) // リンクの色を変更
 
   show raw.where(block: false): it => {
-    //  サイズ（少し小さめ）
-    if it.has("lang") and it.lang == "codelst-lno" {
-      it
-    } else {
-      // ←ここにいつもの装飾
-      set text(
-        size: 0.94em,
-        fill: rgb("#333"),
-      )
+    // ←ここにいつもの装飾
+    set text(
+      size: 0.94em,
+      fill: rgb("#333"),
+    )
 
-      // boxの微調整
-      box(
-        fill: luma(95%), // 背景色 codeblockと揃えている
-        radius: 2pt,
-        inset: (top: 0em, bottom: 0em, left: .4em, right: .4em),
-        outset: (top: 0em, bottom: 0em),
-        height: cjkheight * fontsize + 0.55em,
-        baseline: cjkheight * 0.5em,
-      )[#it]
-    }
+    // boxの微調整
+    box(
+      fill: luma(95%), // 背景色 codeblockと揃えている
+      radius: 2pt,
+      inset: (top: 0em, bottom: 0em, left: .4em, right: .4em),
+      outset: (top: 0em, bottom: 0em),
+      height: cjkheight * fontsize + 0.55em,
+      baseline: cjkheight * 0.5em,
+    )[#it]
   }
 
-  // ```でcodeを呼ぶようにする
-  show raw.where(block: true): it => {
-    // #code に包む。
-    if it.lang != none {
-      code()[#it]
-    }
-  }
-  // code frameをfigureに包んでいるのでcodeの際に改行可能にする
-  show figure.where(kind: "code"): set block(breakable: true)
+  show: apply-codly
+
   // 参考文献
   set bibliography(style: "sist02")
 
