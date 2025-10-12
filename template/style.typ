@@ -25,7 +25,7 @@
   bibliography-style: "sice.csl",
   body,
 ) = {
-  if baselineskip == auto { baselineskip = 1.73 * fontsize }
+  if baselineskip == auto { baselineskip = 1.45 * fontsize }
   set columns(gutter: 2em)
   set page(
     paper: paper,

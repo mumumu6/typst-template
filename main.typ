@@ -62,29 +62,31 @@ int main() {
 ```
 header を付けたいときは
 #grid(columns: 2, gutter: 2em)[
-  #codly(header: [*実際のtypstコード*])
+  #code(header: [*実際のtypstコード*])[
 
-  ````typ
-  #codly(header: [*Header Example*])
-  ```cpp
-  #include <iostream>
-  using namespace std;
-  int main() {
-      cout << "Hello, World!" << endl;
-      return 0;
-  }
-  ```
-  ````
+    ````typ
+    #codly(header: [*Header Example*])
+    ```cpp
+    #include <iostream>
+    using namespace std;
+    int main() {
+        cout << "Hello, World!" << endl;
+        return 0;
+    }
+    ```
+    ````
+  ]
 ][
-  #codly(header: [*Header Example*])
-  ```cpp
-  #include <iostream>
-  using namespace std;
-  int main() {
-      cout << "Hello, World!" << endl;
-      return 0;
-  }
-  ```]
+  #code(header: [*Header Example*])[
+    ```cpp
+    #include <iostream>
+    using namespace std;
+    int main() {
+        cout << "Hello, World!" << endl;
+        return 0;
+    }
+    ```]
+]
 
 #pagebreak()
 `#code`でも同様に呼び出すことが可能で、こちらからheaderやcaption,labelの指定を可能にしました。
