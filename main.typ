@@ -7,7 +7,6 @@
   numbering-headings: "1.1.1",
   cols: 1,
   all-display-style: true,
-  callout-font: "Source Code Pro",
 )
 
 
