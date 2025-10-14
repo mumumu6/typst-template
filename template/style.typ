@@ -1,5 +1,6 @@
 #import "code.typ": *
 #import "components.typ": *
+#import "callout.typ": *
 #import "@preview/quick-maths:0.2.1": shorthands
 
 #let config(
@@ -22,7 +23,7 @@
   non-cjk: regex("[\u0000-\u2023]"), // or "latin-  in-cjk"
   all-display-style: false,
   cjkheight: 0.88, // height of CJK in em
-  bibliography-style: "sice.csl",
+  bibliography-style: "sist02",
   body,
 ) = {
   if baselineskip == auto { baselineskip = 1.45 * fontsize }
@@ -150,15 +151,13 @@
   set bibliography(style: "sist02")
 
   // display styleで表示するかどうか
-  let apply-display = body => {
+  show: body => {
     if all-display-style {
       show math.equation.where(block: false): it => math.display(it)
       show math.integral: math.display
       body
     } else { body }
   }
-
-  show: apply-display
 
 
   show: shorthands.with(

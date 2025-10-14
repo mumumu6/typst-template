@@ -1,10 +1,10 @@
 #import "@preview/codly:1.3.0": *
 #import "@preview/codly-languages:0.1.8": *
 
-
+// codly の初期設定
 #let apply-codly(body) = {
   // ここで「実行」する
-  show: codly-init.with()
+  show: codly-init
   // numberで上に少し余白を作ったのでコードが上昇する分をここで補正
   show raw.where(block: true): it => {
     let last-line = it.lines.len()
@@ -51,7 +51,8 @@
 // 空白を-に変換
 #let slug(s) = str.replace(str(s), regex("\\s+|　+"), "-")
 
-
+// ユーザーが呼び出す関数
+// caption, label, headerなどの設定をしている
 #let code(code, label: none, header: none, caption: none, position: bottom, indexed: true, file: none, ..args) = {
   let cap = none
   let numbering = "1" // numbering

@@ -1,4 +1,3 @@
-
 #let kintou(width, s) = box(width: width, s.text.clusters().join(h(1fr)))
 #let scatter(s) = h(1fr) + s.text.clusters().join(h(2fr)) + h(1fr)
 
@@ -49,7 +48,6 @@
       text(size: 1.8em, weight: 550)[#subtitle]
       v(3em)
     }
-
 
     text(size: 1.4em)[#date]
     v(3em)
@@ -116,4 +114,11 @@
   // このブロック内だけ、分数を display 風に
   show math.frac: math.display
   $ frac(num, den) $
+}
+
+#let solutiontitle = {
+  set text(font: "Noto Sans CJK JP")
+  noindent[
+    【解答】
+  ]
 }

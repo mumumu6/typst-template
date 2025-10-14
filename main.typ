@@ -7,8 +7,8 @@
   numbering-headings: "1.1.1",
   cols: 1,
   all-display-style: true,
+  callout-font: "Source Code Pro",
 )
-
 
 
 
@@ -124,6 +124,49 @@ $
 
 文中の数式でも私はディスプレイスタイルの分数がいいので$1/2$,$(integral_0^oo x dif x)/(2x)$$sum_(k=0)^oo$のように表示することができるように`all-display-style`オプションを追加.
 これは場合によっては行間が広がるので分数は`dfrac` で個別に対応することも可能にしました
+
+#pagebreak()
+
+= callout
+
+#callout(
+  kind: "example",
+  title: "Example",
+)[
+  Like this one.
+]
+
+#callout(
+  kind: "info",
+  title: "info",
+)[
+  Like this one.
+]
+#callout(
+  kind: "question",
+  title: "Question",
+)[
+  Like this one.
+]
+#callout(
+  kind: "note",
+  title: "Note",
+)[
+  Like this one.
+]
+#callout(
+  kind: "success",
+  title: "Success",
+)[
+  Like this one.
+]
+#callout(
+  kind: "warning",
+  title: "Warning",
+)[
+  Like this one.
+]
+
 
 
 
