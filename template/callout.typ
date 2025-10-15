@@ -10,8 +10,46 @@
   success: rgb("#08B94E"),
 )
 
+#let callout-config = state(
+  "call-out",
+  (
+    kind: "info",
+    font: "Roboto",
+    text-color: rgb("#222"),
+  ),
+)
 
-#let callout(kind: "info", title: none, body, callout-font: "Roboto", text-color: rgb("#222")) = {
+#let callout-init(kind: "info", font: "Roboto", text-color: rgb("#222")) = {
+  callout-config.update(_ => (
+    kind: kind,
+    font: font,
+    text-color: text-color,
+  ))
+}
+
+#let __callout-default = context [ Callout Default ]
+
+#let callout(
+  kind: __callout-default,
+  title: none,
+  body,
+  callout-font: __callout-default,
+  text-color: __callout-default,
+) = context {
+  // デフォルト値の設定
+  let defaults = callout-config.get()
+  let resolve(v, def) = if v == __callout-default { def } else { v }
+
+  let kind = resolve(kind, defaults.kind)
+  let callout-font = resolve(callout-font, defaults.font)
+  let text-color = resolve(text-color, defaults.text-color)
+  // デフォルト値を更新
+  callout-config.update(_ => (
+    kind: kind,
+    font: callout-font,
+    text-color: text-color,
+  ))
+
   // 種類→色・アイコン決定
   let base-color = _palette.at(kind)
   // タイトル（省略時は種類名を頭大文字化）

@@ -1,6 +1,7 @@
 #import "code.typ": *
 #import "components.typ": *
 #import "callout.typ": *
+#import "theorem.typ": *
 #import "@preview/quick-maths:0.2.1": shorthands
 
 #let config(
@@ -24,6 +25,9 @@
   all-display-style: false,
   cjkheight: 0.88, // height of CJK in em
   bibliography-style: "sist02",
+  callout-font: "Roboto",
+  callout-text-color: rgb("#222"),
+  callout-default-kind: "info",
   body,
 ) = {
   if baselineskip == auto { baselineskip = 1.45 * fontsize }
@@ -164,6 +168,12 @@
     ($+-$, $plus.minus$),
   )
 
+  // コールアウトのデフォルト値の設定
+  callout-init(
+    kind: callout-default-kind,
+    font: callout-font,
+    text-color: callout-text-color,
+  )
 
   // finally
   body
