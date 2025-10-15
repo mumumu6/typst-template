@@ -137,14 +137,16 @@ $
 )[
   For any real number $x$, we have $x^2 >= 0$.
   $ integral_0^oo e^(-x^2) dif x = sqrt(pi)/2 $
-] <thm:custom-color>
+]
 
 #theorem(
   title: [#lorem(3)],
+  label: "def1",
   kind: "definition",
 )[
   #lorem(5)
-] <thm:no-numbering>
+]
+@def:def1
 
 = 定理環境2
 
@@ -152,15 +154,15 @@ $
   title: [数字はいい感じに更新される],
   numbering: none,
   color: rgb("#6E4E1F"),
+  label: "memo",
 )[
   定理環境の箱もっと見た目をかえたかったが、counterのせいで見た目がおかしくなってしまい、シンプルな見た目にすることに\
   謎バグ
 ]
-
-= callout
-
+@the:memo
 
 #pagebreak()
+= callout
 
 #callout(
   kind: "example",

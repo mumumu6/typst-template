@@ -7,10 +7,10 @@
     // numbering: none なら番号なし。数値なら単純連番。
     numbering: "1",
     palette: (
-      theorem: (label: "定理", color: rgb("#222")),
-      definition: (label: "定義", color: rgb("#222")),
-      proposition: (label: "命題", color: rgb("#222")),
-      lemma: (label: "補題", color: rgb("#6E4E1F")),
+      theorem: (label: "定理", color: rgb("#222"), en-label: "the"),
+      definition: (label: "定義", color: rgb("#222"), en-label: "def"),
+      proposition: (label: "命題", color: rgb("#222"), en-label: "prop"),
+      lemma: (label: "補題", color: rgb("#6E4E1F"), en-label: "lem"),
     ),
     title-color: white, // タイトル帯の文字色
     body-inset: 1em,
@@ -20,7 +20,7 @@
 #let theorem-counters = counter("theorem")
 #let section-counters = counter("section")
 
-
+#let lbl(it) = { label(it) }
 
 #let theorem(
   title: none,
@@ -29,6 +29,7 @@
   numbering: none,
   kind: "theorem", // "theorem", "definition", "proposition", "lemma"
   body,
+  label: none,
 ) = context {
   // 設定の取得
   let cfg = theorem-config.get()
@@ -47,18 +48,23 @@
 
 
   let type = cfg.palette.at(kind).at("label")
+  let label = cfg.palette.at(kind).en-label +":" +  label
 
   let title = text()[*#type  #current-section-number.#num*  #title]
-
-  showybox(
-    title: title,
-    frame: (
-      title-color: white,
-      body-inset: 1em,
-    ),
-    title-style: (
-      color: title-color,
-    ),
-    breakable: true,
-  )[#body]
+  [
+    #figure(kind: kind, supplement: [#type], numbering: _ => [#current-section-number.#num])[
+      #showybox(
+        title: title,
+        frame: (
+          title-color: white,
+          body-inset: 1em,
+        ),
+        title-style: (
+          color: title-color,
+        ),
+        breakable: true,
+      )[#body]
+    ]
+    #if label != none { lbl(label) }
+  ]
 }
