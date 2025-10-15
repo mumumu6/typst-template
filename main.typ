@@ -125,8 +125,42 @@ $
 これは場合によっては行間が広がるので分数は`dfrac` で個別に対応することも可能にしました
 
 #pagebreak()
+= 定理環境
+#theorem(
+  title: [#lorem(6)],
+  color: rgb("#1F6E3F"),
+)[#lorem(10) ]
+== aa
+
+#theorem(
+  title: [#lorem(6)],
+)[
+  For any real number $x$, we have $x^2 >= 0$.
+  $ integral_0^oo e^(-x^2) dif x = sqrt(pi)/2 $
+] <thm:custom-color>
+
+#theorem(
+  title: [#lorem(3)],
+  kind: "definition",
+)[
+  #lorem(5)
+] <thm:no-numbering>
+
+= 定理環境2
+
+#theorem(
+  title: [数字はいい感じに更新される],
+  numbering: none,
+  color: rgb("#6E4E1F"),
+)[
+  定理環境の箱もっと見た目をかえたかったが、counterのせいで見た目がおかしくなってしまい、シンプルな見た目にすることに\
+  謎バグ
+]
 
 = callout
+
+
+#pagebreak()
 
 #callout(
   kind: "example",
@@ -144,6 +178,7 @@ $
 #callout(
   kind: "question",
   title: "Question",
+  text-color: rgb("#0e5e36"),
 )[
   Like this one.
 ]
@@ -153,6 +188,7 @@ $
 )[
   Like this one.
 ]
+
 #callout(
   kind: "success",
   title: "Success",
@@ -165,6 +201,7 @@ $
 )[
   Like this one.
 ]
+
 
 
 
