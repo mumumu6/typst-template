@@ -19,7 +19,7 @@
   ),
 )
 
-#let callout-init(kind: "info", font: "Roboto", text-color: rgb("#222")) = {
+#let callout-init(kind: "info", font: "Source Sans Pro", text-color: rgb("#222")) = {
   callout-config.update(_ => (
     kind: kind,
     font: font,

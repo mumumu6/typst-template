@@ -17,7 +17,7 @@
   subtitle: "サンプル用コード",
   author: "mumumu",
   id: "12B34567",
-  type: 2,
+  type: 1,
   abstract: [
     このレポートでは、Typst のテンプレートファイルの使い方について述べる。
   ],
