@@ -48,9 +48,9 @@
 
 
   let type = cfg.palette.at(kind).at("label")
-  let label = cfg.palette.at(kind).en-label +":" +  label
+  let label = cfg.palette.at(kind).en-label + ":" + label
 
-  let title = text()[*#type  #current-section-number.#num*  #title]
+  let title = par(justify: false)[*#type  #current-section-number.#num* #title]
   [
     #figure(kind: kind, supplement: [#type], numbering: _ => [#current-section-number.#num])[
       #showybox(

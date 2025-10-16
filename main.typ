@@ -132,11 +132,26 @@ $
 )[#lorem(10) ]
 == aa
 
-#theorem(
-  title: [#lorem(6)],
-)[
-  For any real number $x$, we have $x^2 >= 0$.
-  $ integral_0^oo e^(-x^2) dif x = sqrt(pi)/2 $
+#grid(columns: 2, gutter: 2em)[
+
+  #theorem(
+    title: [#lorem(5)],
+  )[
+    For any real number $x$, we have $x^2 >= 0$.
+    $ integral_0^oo e^(-x^2) dif x = sqrt(pi)/2 $
+  ]
+
+][
+  #code(header: [*実際のコード*], indexed: false)[
+    ```typ
+      #theorem(
+        title: [#lorem(5)],
+      )[
+        For any real number $x$, we have $x^2 >= 0$.
+        $ integral_0^oo e^(-x^2) dif x = sqrt(pi)/2 $
+       ]
+    ```
+  ]
 ]
 
 #theorem(
@@ -197,12 +212,27 @@ $
 )[
   Like this one.
 ]
-#callout(
-  kind: "warning",
-  title: "Warning",
-)[
-  Like this one.
+
+#grid(columns: 2, gutter: 2em)[
+  #callout(
+    kind: "warning",
+    title: "Warning",
+  )[
+    Like this one.
+  ]
+][
+  #code(header: [*実際のコード*], indexed: false)[
+    ```typ
+    #callout(
+      kind: "warning",
+      title: "Warning",
+    )[
+      Like this one.
+    ]
+    ```
+  ]
 ]
+
 
 
 
