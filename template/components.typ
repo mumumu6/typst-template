@@ -45,7 +45,7 @@
     }
 
     if subtitle != "" {
-      text(size: 1.8em, weight: 550)[#subtitle]
+      text(size: 1.8em)[#subtitle]
       v(3em)
     }
 
