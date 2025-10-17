@@ -128,6 +128,7 @@ $
 = 定理環境
 #theorem(
   title: [#lorem(6)],
+  label: "id",
   color: rgb("#1F6E3F"),
 )[#lorem(10) ]
 == aa
@@ -156,18 +157,18 @@ $
 
 #theorem(
   title: [#lorem(3)],
-  label: "def1",
+  numbering: false,
   kind: "definition",
 )[
-  #lorem(5)
+  数字は一応消すことが出来る
 ]
-@def:def1
+
+@the:id
 
 = 定理環境2
 
 #theorem(
   title: [数字はいい感じに更新される],
-  numbering: none,
   color: rgb("#6E4E1F"),
   label: "memo",
 )[
