@@ -34,27 +34,34 @@
   // 設定の取得
   let cfg = theorem-config.get()
   // 現在のsection番号を取得して、変化があればリセット
-  let current-section-number = counter(heading).get().at(0)
+  let section-number = counter(heading).get().at(0)
 
-  let num = theorem-counters.get().at(0)
+  let theorem-number = theorem-counters.get().at(0)
 
 
-  if section-counters.get().at(0) != current-section-number {
-    section-counters.update(current-section-number)
+  if section-counters.get().at(0) != section-number {
+    section-counters.update(section-number)
     theorem-counters.update(0)
-    num = 1
+    theorem-number = 1
   }
-  theorem-counters.update(num + 1)
+  theorem-counters.update(theorem-number + 1)
 
 
   let type = cfg.palette.at(kind).at("label")
   let label = cfg.palette.at(kind).en-label + ":" + label
 
-  let title = par(justify: false)[*#type  #current-section-number.#num* #title]
+  // numberingがfalseなら番号なしに
+  let _title
+  if numbering == true {
+    _title = par(justify: false)[*#type  #section-number.#theorem-number* #h(0.5em) #title]
+  } else {
+    _title = par(justify: false)[*#type* #h(0.5em) #title]
+  }
+
   [
-    #figure(kind: kind, supplement: [#type], numbering: _ => [#current-section-number.#num])[
+    #figure(kind: kind, supplement: [#type], numbering: _ => [#section-number.#theorem-number])[
       #showybox(
-        title: title,
+        title: _title,
         frame: (
           title-color: white,
           body-inset: 1em,
