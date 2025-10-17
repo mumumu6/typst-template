@@ -50,10 +50,10 @@
     text-color: text-color,
   ))
 
-  // 種類→色・アイコン決定
+  // 色決定
   let base-color = _palette.at(kind)
-  // タイトル（省略時は種類名を頭大文字化）
 
+  // タイトル（
   let ttl
 
   if title != none {
@@ -71,7 +71,7 @@
   }
 
 
-  // Obsidian 風: タイトル帯は濃色、本文は淡色。区切りはやや太め。
+  // Obsidian 風
   showybox(
     ..ttl,
     frame: (

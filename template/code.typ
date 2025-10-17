@@ -78,7 +78,6 @@
     code = raw(read(file), block: true, lang: "cpp")
   }
 
-  // codly 呼び出し（header 指定があれば渡す）
   let codly-call
   if header == none {
     codly-call = codly(..args)

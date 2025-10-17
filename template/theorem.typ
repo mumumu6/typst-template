@@ -4,8 +4,8 @@
 #let theorem-config = state(
   "theorem",
   (
-    // numbering: none なら番号なし。数値なら単純連番。
-    numbering: "1",
+    // numbering: false なら番号なし。
+    numbering: true,
     palette: (
       theorem: (label: "定理", color: rgb("#222"), en-label: "the"),
       definition: (label: "定義", color: rgb("#222"), en-label: "def"),
@@ -26,7 +26,7 @@
   title: none,
   title-color: black,
   color: rgb("#1F6E3F"),
-  numbering: none,
+  numbering: true,
   kind: "theorem", // "theorem", "definition", "proposition", "lemma"
   body,
   label: none,
