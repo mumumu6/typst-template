@@ -156,8 +156,8 @@
         line(start: (0%, 100%), end: (100%, 0%), stroke: stroke)
       } else if dir == "\\" {
         // ＼：左下・右上
-        place(bottom + left, body1, dx:  inset, dy: -inset)
-        place(top + right,   body2, dx: -inset, dy:  inset)
+        place(bottom + left, body1, dx:  inset*1.4, dy: -inset*1.4) // insetは微調整が必要かも
+        place(top + right,   body2, dx: -inset*0.6, dy:  inset*0.6)
         // 左上 → 右下（＼）
         line(start: (0%, 0%), end: (100%, 100%), stroke: stroke)
       } else {

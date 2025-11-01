@@ -203,11 +203,13 @@
 
           let current = if first-on-page != none { first-on-page } else { last-before }
 
-          chapter-title = [
-            #counter(heading).at(current.location()).at(0)
-            #h(0.5em)
-            #current.body
-          ]
+          if current != none {
+            chapter-title = [
+              #counter(heading).at(current.location()).at(0)
+              #h(0.5em)
+              #current.body
+            ]
+          }
         }
 
         if page-number >= header-start {

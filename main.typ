@@ -10,7 +10,7 @@
   show-header: true,
   author : "mumumu",
   id: "12B34567",
-  // show_chapter_in_header: ,
+  show_chapter_in_header: true,
 )
 
 
