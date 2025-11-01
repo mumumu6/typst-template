@@ -2,6 +2,7 @@
 #import "components.typ": *
 #import "callout.typ": *
 #import "theorem.typ": *
+#import "config-state.typ": *
 #import "@preview/quick-maths:0.2.1": shorthands
 
 #let config(
@@ -28,8 +29,19 @@
   callout-font: "Roboto",
   callout-text-color: rgb("#222"),
   callout-default-kind: "info",
+  show-header: false,
+  header-start: 2, // ヘッダーを表示し始めるページ番号
+  author: none,
+  id: none,
+  show_chapter_in_header: false,
   body,
 ) = {
+  // 名前と学籍番号はここで管理
+  config-state.update(_ => (
+    author: author,
+    id: id,
+  ))
+
   if baselineskip == auto { baselineskip = 1.45 * fontsize }
   set columns(gutter: 2em)
   set page(
@@ -160,6 +172,54 @@
     if all-display-style {
       show math.equation.where(block: false): it => math.display(it)
       show math.integral: math.display
+      body
+    } else { body }
+  }
+
+  // ヘッダーの表示
+
+  show: body => {
+    if show-header {
+      set page(margin: (top: 25mm, bottom: 15mm), header: context {
+        let page-number = counter(page).at(here()).at(0)
+
+        let chapter-title = none
+
+        if show_chapter_in_header {
+          let headings = query(heading.where(level: 1))
+          let first-on-page = none
+          let last-before = none
+
+          for item in headings {
+            let item-page = item.location().page()
+            if item-page == page-number and first-on-page == none {
+              first-on-page = item
+            }
+            if item-page < page-number {
+              last-before = item
+            }
+          }
+
+          let current = if first-on-page != none { first-on-page } else { last-before }
+
+          chapter-title = [
+            #counter(heading).at(current.location()).at(0)
+            #h(0.5em)
+            #current.body
+          ]
+        }
+
+        if page-number >= header-start {
+          // ページを飛ばせるように
+          [
+            #set text(size: 10pt)
+            #chapter-title
+            #h(1fr) #id #h(1em) #author  #v(-0.5em)
+
+            #line(length: 100%, stroke: 1.5pt + luma(60%))
+          ]
+        }
+      })
       body
     } else { body }
   }

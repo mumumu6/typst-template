@@ -7,6 +7,10 @@
   numbering-headings: "1.1.1",
   cols: 1,
   all-display-style: true,
+  show-header: true,
+  author : "mumumu",
+  id: "12B34567",
+  // show_chapter_in_header: ,
 )
 
 
@@ -15,8 +19,6 @@
 #maketitle(
   title: "Typst template",
   subtitle: "サンプル用コード",
-  author: "mumumu",
-  id: "12B34567",
   type: 1,
   abstract: [
     このレポートでは、Typst のテンプレートファイルの使い方について述べる。

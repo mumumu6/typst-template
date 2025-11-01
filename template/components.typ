@@ -1,3 +1,5 @@
+#import "config-state.typ": *
+
 #let kintou(width, s) = box(width: width, s.text.clusters().join(h(1fr)))
 #let scatter(s) = h(1fr) + s.text.clusters().join(h(2fr)) + h(1fr)
 
@@ -34,8 +36,20 @@
   author: "",
   abstract: [],
   type: 1, // 表紙は二通り設定している
-) = align(center)[
+) = context align(center)[
   #set document(title: title, author: author)
+  #let cfg-state = config-state.get()
+
+  #let _author = author
+  #let _id = id
+
+  #if author == "" {
+    _author = cfg-state.author
+  }
+
+  #if id == "" {
+    _id = cfg-state.id
+  }
 
   #if type == 1 {
     v(3em)
@@ -53,11 +67,11 @@
     v(3em)
 
 
-    text(size: 1.4em)[学籍番号 #id]
+    text(size: 1.4em)[学籍番号 #_id]
     v(3em)
 
 
-    text(size: 1.2em)[#author]
+    text(size: 1.2em)[#_author]
 
     if abstract != [] {
       v(2.5em)
@@ -97,10 +111,10 @@
     align(right)[
       #v(2.4em)
 
-      #if author != "" { text(1.1em)[#author] }
+      #if _author != "" { text(1.1em)[#_author] }
 
-      #if id != "" {
-        text(1.1em)[学籍番号 #id]
+      #if _id != "" {
+        text(1.1em)[学籍番号 #_id]
       }
     ]
 
