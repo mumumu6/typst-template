@@ -136,7 +136,8 @@
   set enum(indent: 0.722em)
   set list(indent: 0.722em)
   set table(stroke: 0.04em)
-  show table: set text(top-edge: (1.9 * cjkheight - 1) * fontsize)
+  show table: set text(top-edge: (1.8 * cjkheight - 1) * fontsize)
+  show table.cell: set align(center + horizon) // tableで数値を中央に
   set table(align: center)
   set footnote.entry(indent: 1.6em)
   show figure.where(kind: table): set figure.caption(position: top)
