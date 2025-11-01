@@ -1,20 +1,17 @@
 #import "@preview/showybox:2.0.4": showybox
 
 
-#let theorem-config = state(
-  "theorem",
-  (
-    // numbering: false なら番号なし。
-    numbering: true,
-    palette: (
-      theorem: (label: "定理", color: rgb("#222"), en-label: "the"),
-      definition: (label: "定義", color: rgb("#222"), en-label: "def"),
-      proposition: (label: "命題", color: rgb("#222"), en-label: "prop"),
-      lemma: (label: "補題", color: rgb("#6E4E1F"), en-label: "lem"),
-    ),
-    title-color: white, // タイトル帯の文字色
-    body-inset: 1em,
+#let theorem-config = (
+  // numbering: false なら番号なし。
+  numbering: true,
+  palette: (
+    theorem: (label: "定理", color: rgb("#222"), en-label: "the"),
+    definition: (label: "定義", color: rgb("#222"), en-label: "def"),
+    proposition: (label: "命題", color: rgb("#222"), en-label: "prop"),
+    lemma: (label: "補題", color: rgb("#6E4E1F"), en-label: "lem"),
   ),
+  title-color: white, // タイトル帯の文字色
+  body-inset: 1em,
 )
 
 #let theorem-counters = counter("theorem")
@@ -31,8 +28,6 @@
   body,
   label: none,
 ) = context {
-  // 設定の取得
-  let cfg = theorem-config.get()
   // 現在のsection番号を取得して、変化があればリセット
   let section-number = counter(heading).get().at(0)
 
@@ -47,8 +42,8 @@
   theorem-counters.update(theorem-number + 1)
 
 
-  let type = cfg.palette.at(kind).at("label")
-  let label = cfg.palette.at(kind).en-label + ":" + label
+  let type = theorem-config.palette.at(kind).at("label")
+  let label = theorem-config.palette.at(kind).en-label + ":" + label
 
   // numberingがfalseなら番号なしに
   let _title
