@@ -136,3 +136,34 @@
     【解答】
   ]
 }
+
+// 表
+
+#let diag(body1, body2,
+  dir: "\\",                 // "/" or "\\"
+  width: auto, height: 1cm,
+  inset: 5pt, stroke: 0.5pt,
+) ={
+  table.cell(inset: 0pt)[
+    #box(width: width, height: height)[
+      #if dir == "/" {
+        // ／：左上・右下
+        place(top + left,    body1, dx:  inset, dy:  inset)
+        place(bottom + right,body2, dx: -inset, dy: -inset)
+        // 左下 → 右上（／）
+        line(start: (0%, 100%), end: (100%, 0%), stroke: stroke)
+      } else if dir == "\\" {
+        // ＼：左下・右上
+        place(bottom + left, body1, dx:  inset, dy: -inset)
+        place(top + right,   body2, dx: -inset, dy:  inset)
+        // 左上 → 右下（＼）
+        line(start: (0%, 0%), end: (100%, 100%), stroke: stroke)
+      } else {
+        // 想定外の記号は既定（＼）にフォールバック
+        place(bottom + left, body1, dx:  inset, dy: -inset)
+        place(top + right,   body2, dx: -inset, dy:  inset)
+        line(start: (0%, 0%), end: (100%, 100%), stroke: stroke)
+      }
+    ]
+  ]
+}
