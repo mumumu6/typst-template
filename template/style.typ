@@ -214,7 +214,7 @@
           [
             #set text(size: 10pt)
             #chapter-title
-            #h(1fr) #id #h(1em) #author  #v(-0.5em)
+            #h(1fr) #id #h(1em) #author  #v(-0.8em)
 
             #line(length: 100%, stroke: 1.5pt + luma(60%))
           ]
