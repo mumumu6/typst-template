@@ -143,10 +143,11 @@
   dir: "\\",                 // "/" or "\\"
   width: auto, height: 1cm,
   inset: 3.5pt, stroke: 0.5pt,
+  size: 0.75em,
 ) ={
   table.cell(inset: 0pt)[
     #box(width: width, height: height)[
-      #set text(size: 0.75em) // 少し小さく
+      #set text(size: size) // 少し小さく
       #if dir == "/" {
         // ／：左上・右下
         place(top + left,    body1, dx:  inset, dy:  inset)
