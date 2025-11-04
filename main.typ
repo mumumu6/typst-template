@@ -5,12 +5,12 @@
   fontsize: 10pt,
   lines-per-page: auto,
   numbering-headings: "1.1.1",
-  cols: 1,
+  cols: 1, 
   all-display-style: true,
   show-header: true,
-  author : "mumumu",
-  id: "12B34567",
-  show_chapter_in_header: true,
+  author: "mumumu", // 学籍番号とidは表紙でも使うがここで管理
+  id: "12B34567", 
+  show_chapter_in_header: true, // 章タイトルをヘッダーに表示
 )
 
 
@@ -92,18 +92,36 @@ header を付けたいときは
 #pagebreak()
 `#code`でも同様に呼び出すことが可能で、こちらからheaderやcaption,labelの指定を可能にしました。
 
-#code(caption: "Hello World", header: [*caption、labelの例*], label: "label")[
-  ```cpp
-  #include <iostream>
-  using namespace std;
+#grid(columns: 2, gutter: 2em)[
+  #code(header: [*実際のコード*], indexed: false)[
+    ````typ
+    #code(caption: "Hello World", header: [*caption、labelの例*], label: "label")[
+      ```cpp
+      #include <iostream>
+      using namespace std;
 
-  int main() {
-      cout << "Hello, World!" << endl;
-      return 0;
-  }
-  ```
+      int main() {
+          cout << "Hello, World!" << endl;
+          return 0;
+      }
+      ```
+    ````
+  ]
+][
+  #code(caption: "Hello World", header: [*caption、labelの例*], label: "label")[
+    ```cpp
+    #include <iostream>
+    using namespace std;
+
+    int main() {
+        cout << "Hello, World!" << endl;
+        return 0;
+    }
+    ```
+  ]
 ]
-@label のようにできます\
+
+@label のように参照することもできます\
 ファイルからの読み込みも可能です
 #grid(columns: 2, gutter: 2em)[
   ```typ
@@ -123,7 +141,7 @@ $
   (b +- sqrt(b^2 - 4a c) )/ (2a)
 $
 
-文中の数式でも私はディスプレイスタイルの分数がいいので$1/2$,$(integral_0^oo x dif x)/(2x)$$sum_(k=0)^oo$のように表示することができるように`all-display-style`オプションを追加.
+文中の数式でも私はディスプレイスタイルの分数がいいので$1/2$,$(integral_0^oo x dif x)/(2x)$$sum_(k=0)^oo$のように表示することができるように`all-display-style`オプションを追加しました.
 これは場合によっては行間が広がるので分数は`dfrac` で個別に対応することも可能にしました
 
 #pagebreak()
@@ -200,11 +218,12 @@ $
   title: "Question",
   text-color: rgb("#0e5e36"),
 )[
-  Like this one.
+  Like this one.色も変えれます。
 ]
 #callout(
   kind: "note",
   title: "Note",
+  text-color: rgb("222")
 )[
   Like this one.
 ]
@@ -242,5 +261,5 @@ $
 
 
 #pagebreak()
-以下参考文献の例
+以下参考文献の表示の例、ref.ymlから読み込める。
 #bibliography("ref.yml", full: true)
