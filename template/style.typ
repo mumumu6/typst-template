@@ -145,7 +145,7 @@
   show link: set text(fill: rgb("#0000ff")) // リンクの色を変更
 
   show raw.where(block: false): it => {
-    // ←ここにいつもの装飾
+    
     set text(
       size: 0.94em,
       fill: rgb("#333"),
