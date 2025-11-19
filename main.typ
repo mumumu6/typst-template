@@ -5,11 +5,11 @@
   fontsize: 10pt,
   lines-per-page: auto,
   numbering-headings: "1.1.1",
-  cols: 1, 
+  cols: 1,
   all-display-style: true,
   show-header: true,
   author: "mumumu", // 学籍番号とidは表紙でも使うがここで管理
-  id: "12B34567", 
+  id: "12B34567",
   show_chapter_in_header: true, // 章タイトルをヘッダーに表示
 )
 
@@ -125,10 +125,10 @@ header を付けたいときは
 ファイルからの読み込みも可能です
 #grid(columns: 2, gutter: 2em)[
   ```typ
-  #code(file: "/a.cpp")[]
+  #code(file: read("/a.cpp"))[]
   ```
 ][
-  #code(file: "/a.cpp")[]
+  #code(file: read("/a.cpp"))[]
 
 ]
 
@@ -223,7 +223,7 @@ $
 #callout(
   kind: "note",
   title: "Note",
-  text-color: rgb("222")
+  text-color: rgb("222"),
 )[
   Like this one.
 ]

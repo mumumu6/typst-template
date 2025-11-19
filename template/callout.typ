@@ -58,7 +58,7 @@
 
   if title != none {
     // アイコン画像のパスを決定
-    let path = "/template/assets/" + kind + ".svg"
+    let path = "assets/" + kind + ".svg"
 
     ttl = (
       title: text(font: callout-font)[

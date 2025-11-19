@@ -75,7 +75,7 @@
   }
 
   if file != none {
-    code = raw(read(file), block: true, lang: "cpp")
+    code = raw(file, block: true, lang: "cpp")
   }
 
   let codly-call
