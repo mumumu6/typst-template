@@ -131,6 +131,7 @@
   show math.equation.where(block: true): set block(
     spacing: 1.5 * baselineskip - cjkheight * fontsize,
   )
+  set list(marker: (text(12pt, [•], baseline: -1pt), text(12pt, [◦], baseline: 1pt))) // listのマーカーの高さの変更
   set block(spacing: 1.5 * baselineskip - cjkheight * fontsize)
   set terms(indent: 2em, separator: h(1em, weak: true))
   set enum(indent: 0.722em)
@@ -145,7 +146,6 @@
   show link: set text(fill: rgb("#0000ff")) // リンクの色を変更
 
   show raw.where(block: false): it => {
-    
     set text(
       size: 0.94em,
       fill: rgb("#333"),
