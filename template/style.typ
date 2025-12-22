@@ -9,7 +9,7 @@
   lang: "ja",
   seriffont: "New Computer Modern", // or "Libertinus Serif" or "Source Serif Pro"
   seriffont-cjk: "Harano Aji Mincho", // or "Yu Mincho" or "Hiragino Mincho ProN"
-  sansfont: "Source Sans Pro", // or "Arial" or "New Computer Modern Sans" or "Libertinus Sans"
+  sansfont: "Source Sans 3", // or "Arial" or "New Computer Modern Sans" or "Libertinus Sans"
   sansfont-cjk: "Harano Aji Gothic", // or "Yu Gothic" or "Hiragino Kaku Gothic ProN"
   paper: "a4", // "a*", "b*", or (paperwidth, paperheight) e.g. (210mm, 297mm)
   paper-margin: (top: 20mm, bottom: 27mm, left: 20mm, right: 20mm),
@@ -26,7 +26,7 @@
   all-display-style: false,
   cjkheight: 0.88, // height of CJK in em
   bibliography-style: "sist02",
-  callout-font: "Roboto",
+  callout-font: "Source Sans Pro",
   callout-text-color: rgb("#222"),
   callout-default-kind: "info",
   show-header: false,

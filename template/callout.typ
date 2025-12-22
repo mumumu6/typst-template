@@ -14,7 +14,7 @@
   "call-out",
   (
     kind: "info",
-    font: "Roboto",
+    font: "Source Sans Pro",
     text-color: rgb("#222"),
   ),
 )
