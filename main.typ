@@ -261,5 +261,6 @@ $
 
 
 #pagebreak()
-以下参考文献の表示の例、ref.ymlから読み込める。
+以下参考文献の表示の例、ref.ymlから読み込める。\
+@kimura2015asymptotic `@kimura2015asymptotic`などで参照可能
 #bibliography("ref.yml", full: true)

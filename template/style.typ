@@ -155,10 +155,9 @@
     box(
       fill: luma(95%), // 背景色 codeblockと揃えている
       radius: 2pt,
-      inset: (top: 0em, bottom: 0em, left: .4em, right: .4em),
-      outset: (top: 0em, bottom: 0em),
+      inset: (top: 0em, bottom: 0em, left: 0.6em, right: 0.6em),
+      outset: (top: 0em, bottom: 0em, left: -0.3em, right: -0.3em),
       height: cjkheight * fontsize + 0.55em,
-      baseline: cjkheight * 0.5em,
     )[#it]
   }
 
@@ -226,7 +225,6 @@
       body
     } else { body }
   }
-
 
   show: shorthands.with(
     ($+-$, $plus.minus$),
