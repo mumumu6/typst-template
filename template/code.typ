@@ -53,7 +53,17 @@
 
 // ユーザーが呼び出す関数
 // caption, label, headerなどの設定をしている
-#let code(code, label: none, header: none, caption: none, position: bottom, indexed: true, file: none, ..args) = {
+#let code(
+  code,
+  label: none,
+  header: none,
+  caption: none,
+  position: bottom,
+  indexed: true,
+  file: none,
+  lang: "cpp",
+  ..args,
+) = {
   let cap = none
   let numbering = "1" // numbering
 
@@ -75,7 +85,7 @@
   }
 
   if file != none {
-    code = raw(file, block: true, lang: "cpp")
+    code = raw(file, block: true, lang: lang)
   }
 
   let codly-call
