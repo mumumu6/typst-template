@@ -37,7 +37,6 @@
   abstract: [],
   type: 1, // 表紙は二通り設定している
 ) = context align(center)[
-  #set document(title: title, author: author)
   #let cfg-state = config-state.get()
 
   #let _author = author
@@ -50,6 +49,13 @@
   #if id == "" {
     _id = cfg-state.id
   }
+
+  #let metadata-title = if subtitle == "" {
+    title
+  } else {
+    title + " " + subtitle
+  }
+  #set document(title: metadata-title, author: _author)
 
   #if type == 1 {
     v(3em)
@@ -122,6 +128,17 @@
   }
 ]
 
+#let showtitle() = context {
+  let cfg-state = config-state.get()
+  maketitle(
+    title: cfg-state.title,
+    subtitle: cfg-state.subtitle,
+    date: cfg-state.date,
+    abstract: cfg-state.abstract,
+    type: cfg-state.title-type,
+  )
+}
+
 // 数式
 
 #let dfrac(num, den) = {
@@ -131,7 +148,7 @@
 }
 
 #let solutiontitle = {
-  set text(font: "Noto Sans CJK JP")
+  set text(font: "Harano Aji Gothic", weight: 500)
   noindent[
     【解答】
   ]

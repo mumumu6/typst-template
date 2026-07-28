@@ -15,14 +15,14 @@
   paper-margin: (top: 20mm, bottom: 27mm, left: 20mm, right: 20mm),
   page-number: "1",
   numbering-headings: "1.1.1",
-  indent-length: 1em,
+  indent-length: 0em,
   heading-bibliography: "参考文献",
   fontsize: 10pt,
   baselineskip: auto,
   lines-per-page: auto,
   book: false,
   cols: 1,
-  non-cjk: regex("[\u0000-\u2023]"), // or "latin-  in-cjk"
+  non-cjk: "latin-in-cjk",
   all-display-style: false,
   cjkheight: 0.88, // height of CJK in em
   bibliography-style: "sist02",
@@ -33,6 +33,15 @@
   header-start: 2, // ヘッダーを表示し始めるページ番号
   author: none,
   id: none,
+  title: "",
+  subtitle: "",
+  date: datetime
+    .today()
+    .display(
+      "[year]年[month repr:numerical padding:none]月[day padding:none]日",
+    ),
+  abstract: [],
+  title-type: 1,
   show_chapter_in_header: false,
   body,
 ) = {
@@ -40,6 +49,11 @@
   config-state.update(_ => (
     author: author,
     id: id,
+    title: title,
+    subtitle: subtitle,
+    date: date,
+    abstract: abstract,
+    title-type: title-type,
   ))
 
   if baselineskip == auto { baselineskip = 1.45 * fontsize }
@@ -53,7 +67,7 @@
   set text(
     lang: lang,
     font: ((name: seriffont, covers: non-cjk), seriffont-cjk),
-    weight: 450,
+    weight: 400,
     size: fontsize,
     top-edge: cjkheight * fontsize,
   )
@@ -117,8 +131,8 @@
   //   font: ((name: sansfont, covers: non-cjk), sansfont-cjk),
   // )
   show emph: set text(
-    font: ((name: seriffont, covers: non-cjk), sansfont-cjk),
-    weight: 450,
+    font: ((name: seriffont, covers: non-cjk), seriffont-cjk),
+    weight: 400,
   )
   set quote(block: true)
   show quote.where(block: true): set pad(left: 2em, right: 0em)
@@ -204,8 +218,12 @@
 
           if current != none {
             chapter-title = [
-              #counter(heading).at(current.location()).at(0)
-              #h(0.5em)
+              #if current.numbering != none {
+                [
+                  #counter(heading).at(current.location()).at(0)
+                  #h(0.5em)
+                ]
+              }
               #current.body
             ]
           }

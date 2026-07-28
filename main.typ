@@ -10,20 +10,19 @@
   show-header: true,
   author: "mumumu", // 学籍番号とidは表紙でも使うがここで管理
   id: "12B34567",
+  title: "Typst template",
+  subtitle: "サンプル用コード",
+  title-type: 1,
+  abstract: [
+    このレポートでは、Typst のテンプレートファイルの使い方について述べる。
+  ],
   show_chapter_in_header: true, // 章タイトルをヘッダーに表示
 )
 
 
 
 
-#maketitle(
-  title: "Typst template",
-  subtitle: "サンプル用コード",
-  type: 1,
-  abstract: [
-    このレポートでは、Typst のテンプレートファイルの使い方について述べる。
-  ],
-)
+#showtitle()
 
 
 #outline()
@@ -37,16 +36,18 @@
 レポートを書くときにtitleとsubtitleがどうしても欲しいので二つ用意してあります。
 
 ```typ
-#maketitle(
+#show: config.with(
   title: "Typst template",
   subtitle: "サンプル用コード",
   author: "mumumu",
   id: "12B34567",
-  type: 2,
+  title-type: 2,
   abstract: [
     このレポートでは、Typst のテンプレートファイルの使い方について述べる。
   ],
 )
+
+#showtitle()
 ```
 
 = コードの挿入について
@@ -256,6 +257,31 @@ $
 ]
 
 
+```c
+int main() {
+    int x;
+    int y;
+
+    x = 2 + 1 * 3 - 1 + 4 / 2;
+    y = x = 4;
+
+    if (x == y + 2 * 2) return x;
+
+    if (x) return x;
+    if (x + 1 < y) return x;
+
+    if ((x == y) || (x < y)) return y / 2 - 1;
+
+    return x;
+}
+```
+
+#code(
+  file: read("/a.cpp"),
+  lang: "c",
+  // caption: "Hello World",
+  // header: [*caption、labelの例*],
+)[]
 
 
 
