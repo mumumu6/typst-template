@@ -147,8 +147,9 @@
   $ frac(num, den) $
 }
 
-#let solutiontitle = {
-  set text(font: "Harano Aji Gothic", weight: 500)
+#let solutiontitle = context {
+  let cfg = config-state.get()
+  set text(font: ((name: cfg.sansfont, covers: "latin-in-cjk"), cfg.sansfont-cjk), weight: 500)
   noindent[
     【解答】
   ]

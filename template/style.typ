@@ -54,6 +54,8 @@
     date: date,
     abstract: abstract,
     title-type: title-type,
+    sansfont: sansfont,
+    sansfont-cjk: sansfont-cjk,
   ))
 
   if baselineskip == auto { baselineskip = 1.45 * fontsize }
